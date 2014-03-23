@@ -51,7 +51,7 @@ defmodule Simpson do
             spawn(Simpson, :simpson, [self, a, b, n])
             nextVal = iteratorSP(b, n, stepSize, remainingIterations-1)
             receive do
-                {:result, val} -> IO.puts "result is #{val}"
+                {:result, val} -> #IO.puts "result is #{val}"
                 val+nextVal
             end
         else
@@ -62,6 +62,3 @@ end
 
 
 Simpson.simpsonParallel
-IO.puts "#####################"
-#IO.puts "#{:erlang.system_info(:logical_processors_available)}"
-#IO.puts "#{:erlang.system_info(:logical_processors)}"
