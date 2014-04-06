@@ -40,6 +40,7 @@ defmodule Simpson do
 
     # run simpson on clusters
     def simpsonParallel do
+        # read arguments
         args = System.argv()
         [aa|temp1] = args
         [bb|temp2] = temp1
@@ -73,9 +74,11 @@ defmodule Simpson do
         end
     end
     
+    # create json object and send it to front end 
     def sendResultsToFrontEnd(result) do
         {:ok, socket} = :gen_tcp.connect({127, 0, 0, 1} ,2000, [:binary, {:active,true}])
-        :gen_tcp.send(socket, to_string(result))
+        jsonStr = '{"result":"#{result}", "status":"ok"}'  # create json object
+        :gen_tcp.send(socket, jsonStr)#to_string(result))
         :gen_tcp.close(socket)
     end
 end

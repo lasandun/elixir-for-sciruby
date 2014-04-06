@@ -8,8 +8,10 @@ class FrontEnd
         fork do
             exec cmdStr
         end
-        val = receiveResults(2000)
-        puts "Result : #{val}"
+        resultStr = receiveResults(2000)
+        puts "front end: Result string : #{resultStr}"
+        jo = JSON.parse(resultStr)
+        puts "front end:Reslut : #{jo["result"]}"
     end
 
     def self.receiveResults(port)
