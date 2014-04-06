@@ -55,7 +55,8 @@ defmodule Simpson do
         stepSize = 1.0*(b-a)/noOfProcesses
 
         val = iteratorSP(a, n/noOfProcesses, stepSize, noOfProcesses)
-        IO.puts "****** #{val} ********"
+        IO.puts "Back end: ****** #{val} ********"
+        sendResultsToFrontEnd(val)
     end
 
     def iteratorSP(a, n, stepSize, remainingIterations) do
@@ -70,6 +71,12 @@ defmodule Simpson do
         else
             0
         end
+    end
+    
+    def sendResultsToFrontEnd(result) do
+        {:ok, socket} = :gen_tcp.connect({127, 0, 0, 1} ,2000, [:binary, {:active,true}])
+        :gen_tcp.send(socket, to_string(result))
+        :gen_tcp.close(socket)
     end
 end
 
