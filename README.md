@@ -7,6 +7,3 @@ You may run the frontEnd.rb file using command,
 
 It will call the simpson.exs Elixir file.
 
-TODO:
-    Currently the Ruby file Compile the elixir code. It should call the
-    method throug a beam file.
