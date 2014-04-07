@@ -14,8 +14,8 @@ def simpson(a, b, n)
     return s
 end
 def f(x)
-    return (x*x*x - x*x + x*2)
+    return (x*x*x*x-x*x+2*x)
 end
 
-var = simpson(0, 10, 16000000)
+var = simpson(0, 10, 40000000)
 puts var
